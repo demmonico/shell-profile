@@ -44,7 +44,7 @@ function watcha {
 # read SSH identity and add to SSH key manager
 # ssh-add -l | grep $(cat ~/.ssh/id_rsa.pub | cut -d' ' -f3) >/dev/null || ssh-add ~/.ssh/id_rsa
 
-t() {
+function t() { # Terraform / Terramate / Terragrund wrapper
   if [ -f "terragrunt.hcl" ]; then
     command terragrund "$@"
   elif ls *.tm.hcl 1> /dev/null 2>&1; then

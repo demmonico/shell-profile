@@ -17,7 +17,7 @@ _PS_MOD_OLA_CLI_LOOPS=""
 _PS_MOD_OLA_CLI_DEFAULT_LOOPS=1
 
 # auto-import env vars
-export $(grep -v '^#' "${_PS_MOD_OLA_ENV_VARS_FILE}" | xargs)
+eval $(grep -v '^#' "${_PS_MOD_OLA_ENV_VARS_FILE}" | xargs)
 for v in 'PS_MOD_OLA_CLI_USER' 'PS_MOD_OLA_CLI_SUBDOMAIN' 'PS_MOD_OLA_AWS_APP_ID' 'PS_MOD_OLA_AWS_REGION' 'PS_MOD_OLA_SDK_REGION' 'PS_MOD_OLA_SDK_CLIENT_ID' 'PS_MOD_OLA_SDK_CLIENT_SECRET'; do
   if [ -z "${v+1}" ]; then
     echo "ERROR: Missing env variable '${v}'!"

@@ -4,11 +4,19 @@
 #
 #-------------------------------------------------------------------#
 
+### docs
+
+source "$( dirname $(readlink -f $0) )/docs.sh"
+
+
+### shell
 
 function _ps_h_get_shell() { ps -hp $$ | grep tty | awk '{print $4}' | sed 's/^[-_]//'; }
 function _ps_h_is_shell_bash(){ [[ "$( _ps_h_get_shell )" == 'bash' ]] || return 1; }
 function _ps_h_is_shell_zsh(){ [[ "$( _ps_h_get_shell )" == 'zsh' ]] || return 1; }
 
+
+### GUI
 
 # Renders a text based list of options that can be selected by the
 # user using up, down and enter keys and returns the chosen option.
