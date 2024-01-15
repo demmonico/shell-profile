@@ -12,6 +12,7 @@ _PS_MOD_OLA_KEYCHAIN_PWD_NAME="onelogin"
 _PS_MOD_OLA_CUSTOM_ALIASES_SCRIPT="${PS_MOD_OLA_CUSTOM_ALIASES_SCRIPT:-"${_PS_MOD_OLA_ROOT_DIR}/custom.sh"}"
 
 _PS_MOD_OLA_CLI_PATH="$HOME/Library/Application Support/onelogin-aws-cli"
+_PS_MOD_OLA_CLI_DURATION=3600
 # Note: non-default loops don't work with OTP MFA, since it cannot re-login in background
 _PS_MOD_OLA_CLI_LOOPS=""
 _PS_MOD_OLA_CLI_DEFAULT_LOOPS=1
@@ -88,6 +89,7 @@ function _ps_mod_ola_cli_run {
   java -jar "${_PS_MOD_OLA_CLI_PATH}/onelogin-aws-cli.jar" \
     -a ${PS_MOD_OLA_AWS_APP_ID} -d ${PS_MOD_OLA_CLI_SUBDOMAIN} \
     --loop ${_PS_MOD_OLA_CLI_LOOPS:-${_PS_MOD_OLA_CLI_DEFAULT_LOOPS}} \
+    --duration ${_PS_MOD_OLA_CLI_DURATION} \
     $@
 }
 
