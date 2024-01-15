@@ -41,6 +41,16 @@ function watcha {
     echo watch -n 1 $(alias "$@" | cut -d\' -f2)
 }
 
+# useful only for Mac OS Silicon M1, still working but useless for the other platforms, source - https://stackoverflow.com/a/70288080/8148333
+# It did not worked inside scripts. To be tested in terminal
+docker() {
+  if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+    /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
+  else
+    /usr/local/bin/docker "$@"
+  fi
+}
+
 # read SSH identity and add to SSH key manager
 # ssh-add -l | grep $(cat ~/.ssh/id_rsa.pub | cut -d' ' -f3) >/dev/null || ssh-add ~/.ssh/id_rsa
 
