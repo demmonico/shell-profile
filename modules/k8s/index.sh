@@ -4,6 +4,9 @@
 alias k="kubectl"
 alias ke="k exec -ti"
 
+alias kgp-err="kubectl get pods --sort-by=.metadata.creationTimestamp | grep 'Error'"
+alias kp-del-err="kubectl get pods --sort-by=.metadata.creationTimestamp | grep 'Error' | awk '{print \$1}' | xargs -I {} kubectl delete pod/{}"
+
 # watch nodes
 function kwn-req() {
   local NS=${1:+"-n $1"}
